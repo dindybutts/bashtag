@@ -15,8 +15,6 @@ set -o errexit
 # anything past 1 is other tags
 argument_array=( "$@" )
 
-echo "${#argument_array[@]}"
-
 if [ "${#argument_array[@]}" -ge 2 ]
 then
   # this gets all the tags
