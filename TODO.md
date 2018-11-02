@@ -1,0 +1,4 @@
+- [x] add support for multiple tags
+- [x] check if tag already exists
+- [x] check if no tag is specified and exit
+- [ ] move file path to the last arg
