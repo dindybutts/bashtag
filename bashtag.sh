@@ -6,8 +6,10 @@
 # Distributed under terms of the GPLv3 license.
 #
 
-set -o errexit
 
+# usage: bashtag {file} {tag1} {tag2} {tag3} (etc etc)
+
+set -o errexit
 # realpath is an external program, check if it's installed first
 
 # 0 is the file path
@@ -21,19 +23,20 @@ then
   for (( i = 1; i < ${#argument_array[@]}; i++ ))
   do
 
-    TAG="${argument_array[$i]}"
-
-    if [ ! -f "$HOME/tags/$TAG/$(basename "$1")" ]
+    if [ ! -f "$HOME/tags/${argument_array[$i]}/$(basename "$1")" ]
     then
-      mkdir -p "$HOME/tags/$TAG"
-      echo "$HOME/tags/$TAG/$(basename "$1")"
-      ln -s "$(realpath "$1")" "$HOME/tags/$TAG/$(basename "$1")"
+      mkdir -p "$HOME/tags/${argument_array[$i]}"
+      echo "$HOME/tags/${argument_array[$i]}/$(basename "$1")"
+      ln -s "$(realpath "$1")" "$HOME/tags/${argument_array[$i]}/$(basename "$1")"
     else
-      echo "symlink at $HOME/tags/$TAG/$(basename "$1") exists"
+      echo "symlink at $HOME/tags/${argument_array[$i]}/$(basename "$1") exists"
     fi
+
   done
 elif [ "${#argument_array[@]}" -lt 2 ]
 then
+
   echo "Error: No tag specified"
   exit 1
+
 fi
